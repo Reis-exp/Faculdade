@@ -1,0 +1,194 @@
+# vamos começar criando um local para armazenar os dados dos pacientes e seguir com uma sequencia de ID
+
+pacientes = []
+proximo_id = 1
+medicos = {
+    "Emergência": ["Dr. Carlos", "Dra. Helena"],
+    "Consulta Agendada": ["Dr. Marcos"],
+    "Exame": ["Dra. Sofia"]
+}
+# Agenda por médico: horários permitidos (formato HH:MM)
+# Para cada médico, liste os horários disponíveis. Ajuste conforme necessário.
+agenda_medicos = {
+    "Dr. Carlos": ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30","16:00","16:30","17:00"],
+    "Dra. Helena": ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30","17:00", "17:30", "18:00", "18:30","19:00","19:30","20:00"],
+    "Dr. Marcos": ["08:00", "08:30", "09:00", "09:30", "10:00","11:30", "14:00", "14:30", "15:00"],
+    "Dra. Sofia": ["08:00", "08:30", "09:00", "09:30", "10:00","13:00", "13:30", "14:00", "14:30", "15:00"]
+}
+# aqui estamos criando a função para adicionar os pacientes 
+def add_paciente():
+
+    global proximo_id
+
+    print("\n ----Cadastro de paciente---- \n")
+    nome = input("Digite o nome do paciente:\n")
+    idade = int(input("Digite a idade do paciente:\n"))
+    sexo = input("Digite o sexo do paciente (M/F):\n").upper()
+    
+    motivo_consulta = input("\nQual é o motivo da consulta? (Emergência/Consulta Agendada/Exame):\n").title()
+    
+    if motivo_consulta == "Emergência":
+        print("\nMédicos disponíveis para EMERGÊNCIA:")
+        for m in medicos["Emergência"]:
+            print("-", m)
+
+        while True:
+            medico = input("Escolha o médico: ").title()
+            if medico in medicos["Emergência"]:
+                break
+            print("Médico inválido! Escolha novamente.\n")
+
+    elif motivo_consulta == "Consulta Agendada":
+        medico = medicos["Consulta Agendada"][0]
+        print(f"\nMédico responsável pela consulta: {medico}")
+
+    elif motivo_consulta == "Exame":
+        medico = medicos["Exame"][0]
+        print(f"\nMédico responsável pelo exame: {medico}")
+
+    documentos = input("\nOs documentos estão corretos? (S/N):\n").upper()
+    pagamento = input("Os pagamentos estão em dia? (S/N):\n").upper()
+
+    # Validação de horário com base na agenda do médico
+    allowed_times = agenda_medicos.get(medico, [])
+    # horários já reservados para este médico
+    booked = [p["horario"] for p in pacientes if p.get("medico") == medico and p.get("horario")]
+    available = [t for t in allowed_times if t not in booked]
+
+    if not available:
+        print(f"\nNão há horários disponíveis para {medico}. Cadastro cancelado.\n")
+        return
+
+    print(f"\nHorários disponíveis para {medico}:")
+    for t in available:
+        print("-", t)
+
+    while True:
+        horario = input("Escolha um horário entre os listados (HH:MM):\n")
+        if horario in available:
+            break
+        print("Horário inválido ou já reservado. Escolha novamente.\n")
+
+    while True:  # PARA EVITAR QUE SEJA DIGITADO QUALQUER COISA E DÊ ERRO NO CADASTRO
+        contato = input("Digite o celular do paciente (11 dígitos): ")
+
+        if contato.isdigit() and len(contato) == 11:
+            break
+        else:
+            print("Telefone inválido! Digite apenas números e com 11 dígitos.\n")
+
+    #após colocar os dados, vamos usar um dicionario com o nome de paciente para armazenar as informações digitadas
+    
+    paciente = {
+        "id": proximo_id,
+        "nome": nome,
+        "idade": idade,
+        "sexo": sexo,
+        "motivo": motivo_consulta,
+        "documentos": documentos,
+        "pagamento": pagamento,
+        "contato":contato, 
+        "horario": horario,
+        "medico": medico
+
+    }
+
+    pacientes.append(paciente)
+    proximo_id += 1
+
+    print("\nPaciente cadastrado com sucesso!!\n")
+
+
+
+#agora vamos criar a função para verificar se o paciente está apto
+
+def verificar_paciente(paciente):
+    print("\n Verificando paciente \n")
+    print(f"Paciente:{paciente['nome']}")
+
+    condicoes = {
+        "documentos": paciente["documentos"] == "S",
+        "pagamento": paciente["pagamento"] == "S",
+        "Telefone": paciente["contato"] != "contato"
+    }
+    for item, status in condicoes.items():
+        print(f"{item}: {'OK' if status else 'PENDENTE'}")
+    if all(condicoes.values()):
+        print("\n >>> O paciente está APTO para ser atendido!\n")
+    else:
+        print("\n >>> O paciente precisa regularizar as suas pendências antes do atendimento!<<<\n")
+
+#Essa função será responsavel por buscar o paciente dentro do dicionario criado e exibir na tela para o usuario.
+def buscar_paciente():
+    print("\n ---- Buscar Paciente ---- \n")
+    nome_busca = input("Digite o nome do paciente:")
+    contato_busca = input("Digite o contato do paciente:")
+    encontrados = [p for p in pacientes if nome_busca in p["nome"] and contato_busca in p["contato"].lower()]
+   
+    if len(encontrados) == 0:
+        print("Nenhum paciente encontrado! Tente novamente.<<<")
+    else:
+        for p in encontrados:
+            print(f">>>\nID: {p['id']} | Nome: {p['nome']} | Sexo: {p['sexo']} | Contato: {p['contato']}")
+            verificar_paciente(p)
+
+
+#Essa função vai ser responsavel por listar todos os pacientes cadastrados sequência.
+def listar_paciente():
+    print("\n---- Lista de pacientes ----\n")
+    if len(pacientes)== 0:
+        print("Erro! Tente novamente!<<<")
+        return
+    for p in pacientes:
+        print(f"\n ID: {p['id']} | Nome: {p['nome']} | Sexo: {p['sexo']} | Contato: {p['contato']}")
+        print()
+
+
+#essa função vai desempenhar o papel de calculo, onde iremos mostrar quantas pessoas foram cadastradas, quantas são homens e quantas são mulheres, junto da idade média dos pacientes.
+def estatistica_clinica():
+    print("\n ---- Estatisticas das clinica---- \n")
+    total = len(pacientes)
+
+    if total == 0:
+        print("Nenhum Dado Encontrado.")
+        return
+
+    media_idade = sum(p["idade"] for p in pacientes) / total
+    homens = sum(1 for p in pacientes if p["sexo"] == "M")
+    mulheres = sum(1 for p in pacientes if p["sexo"] == "F")
+
+    print(f"Total de pacientes: {total}")
+    print(f"Media das idades dos pacientes: {media_idade:.1f} anos ")
+    print(f"Quantidade de homens na Clinica: {homens}")
+    print(f"Quantidade de Mulheres na Clinica: {mulheres}")
+
+
+def menu():
+    while True:
+        print("""
+=====================================
+        CLINICA VIDA+
+=====================================
+1. Cadastrar paciente
+2. Listar pacientes
+3. Buscar paciente e verificar condições
+4. Estatísticas da clínica
+5. Sair
+""")
+
+        opcao = input("Escolha uma opção: ")
+        if opcao == "1":
+            add_paciente()
+        elif opcao == "2":
+            listar_paciente()
+        elif opcao == "3":
+            buscar_paciente()
+        elif opcao == "4":
+            estatistica_clinica()
+        elif opcao == "5":
+            print("ENCERRANDO....")
+            break
+        else:
+            print("Opção Inválida, Tente novamente. \n")
+
+menu()
