@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<signos>
+  <signo>
+    <nome>Aquário</nome>
+    <data_inicio>20/01</data_inicio>
+    <data_fim>18/02</data_fim>
+    <descricao>Inovadores, independentes e visionários, os aquarianos valorizam a liberdade e têm forte senso humanitário.</descricao>
+  </signo>
+  <signo>
+    <nome>Peixes</nome>
+    <data_inicio>19/02</data_inicio>
+    <data_fim>20/03</data_fim>
+    <descricao>Sensíveis, intuitivos e sonhadores, os piscianos são empáticos e possuem grande conexão emocional e artística.</descricao>
+  </signo>
+  <signo>
+    <nome>Áries</nome>
+    <data_inicio>21/03</data_inicio>
+    <data_fim>19/04</data_fim>
+    <descricao>Corajosos, determinados e cheios de energia, os arianos são líderes natos e encaram desafios com entusiasmo.</descricao>
+  </signo>
+  <signo>
+    <nome>Touro</nome>
+    <data_inicio>20/04</data_inicio>
+    <data_fim>20/05</data_fim>
+    <descricao>Pacientes, leais e práticos, os taurinos prezam pela segurança, estabilidade e conforto material.</descricao>
+  </signo>
+  <signo>
+    <nome>Gêmeos</nome>
+    <data_inicio>21/05</data_inicio>
+    <data_fim>20/06</data_fim>
+    <descricao>Comunicativos, curiosos e versáteis, os geminianos adoram aprender coisas novas e trocar ideias.</descricao>
+  </signo>
+  <signo>
+    <nome>Câncer</nome>
+    <data_inicio>21/06</data_inicio>
+    <data_fim>22/07</data_fim>
+    <descricao>Afetuosos, protetores e sensíveis, os cancerianos têm forte ligação com a família e raízes emocionais.</descricao>
+  </signo>
+  <signo>
+    <nome>Leão</nome>
+    <data_inicio>23/07</data_inicio>
+    <data_fim>22/08</data_fim>
+    <descricao>Confiantes, generosos e carismáticos, os leoninos têm presença marcante e liderança natural.</descricao>
+  </signo>
+  <signo>
+    <nome>Virgem</nome>
+    <data_inicio>23/08</data_inicio>
+    <data_fim>22/09</data_fim>
+    <descricao>Detalhistas, organizados e dedicados, os virginianos buscam a perfeição e a eficiência no dia a dia.</descricao>
+  </signo>
+  <signo>
+    <nome>Libra</nome>
+    <data_inicio>23/09</data_inicio>
+    <data_fim>22/10</data_fim>
+    <descricao>Diplomáticos, equilibrados e gentis, os librianos valorizam a harmonia, a justiça e boas relações.</descricao>
+  </signo>
+  <signo>
+    <nome>Escorpião</nome>
+    <data_inicio>23/10</data_inicio>
+    <data_fim>21/11</data_fim>
+    <descricao>Intensos, leais e misteriosos, os escorpianos têm emoções profundas e forte poder de superação.</descricao>
+  </signo>
+  <signo>
+    <nome>Sagitário</nome>
+    <data_inicio>22/11</data_inicio>
+    <data_fim>21/12</data_fim>
+    <descricao>Otimistas, aventureiros e sinceros, os sagitarianos amam a liberdade e buscar novos conhecimentos.</descricao>
+  </signo>
+  <signo>
+    <nome>Capricórnio</nome>
+    <data_inicio>22/12</data_inicio>
+    <data_fim>19/01</data_fim>
+    <descricao>Disciplinados, práticos e perseverantes, os capricornianos trabalham duro para alcançar suas metas.</descricao>
+  </signo>
+</signos>
