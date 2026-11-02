@@ -1,0 +1,31 @@
+<!-- este arquivo será o mesmo do trabalho do primeiro modulo, porém com as alterações para o segundo modulo. -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Tabuada interativo</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <p>Gerador de Tabuada Interativo</p>
+    </div>
+    
+    <div class="calculo">
+        <h3>Digite um numero de 1 a 10</h3>
+        <input type="number" id="numero" placeholder="Digite um número">
+        <div class="botoes">
+        <button type="button" id="limpar">Delete</button>
+        <button type="button" id="gerar">Gerar tabuada</button>
+        </div>
+    </div>
+
+    <div class="resultado" id="resultado">
+        <p id="tabuada">Resultado da tabuada</p>
+        <div id="conteudo-tabuada"></div>
+    </div>
+<canvas id="efeitos"></canvas>
+</body>
+</html>

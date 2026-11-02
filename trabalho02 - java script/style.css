@@ -1,0 +1,187 @@
+/* este arquivo será o mesmo do trabalho do primeiro modulo, porém com as alterações para o segundo modulo. */
+    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #b7bbbd;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cabeçalho */
+.container {
+    width: 100%;
+    background: linear-gradient(to right, #5951cc, #1da039, #5951cc);
+    color: #ffffff;
+    background-size: 200% 200%;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-position 1s ease;
+}
+@keyframes flutuar {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.container:hover p{
+    animation: flutuar 1s ease-in-out infinite;
+
+}
+.container:hover{
+    animation: animarGradiente 3s linear infinite;
+    
+}
+
+@keyframes animarGradiente{
+    0%{
+        background-position:0% 50%;
+        filter: hue-rotate(0deg);
+    }
+    100%{
+        background-position: 0% 50%;
+        filter: hue-rotate(360deg);
+    }
+}
+
+
+/* Área de entrada e botões */
+.calculo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 25px 35px;
+    margin-top: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    gap: 15px;
+}
+
+.calculo h3 {
+    color: #333333;
+    font-size: 18px;
+}
+
+.calculo input {
+    width: 220px;
+    padding: 10px;
+    border: 2px solid #4143c9;
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.calculo input:focus {
+    border-color: #4143c9;
+}
+
+/* Agrupamento dos botões lado a lado */
+.calculo .botoes {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Botão Gerar */
+#gerar {
+    background-color: #6c6ed6;
+    color: #ffffff;
+}
+
+#gerar:hover {
+    background-color: #171acf;
+}
+
+/* Botão Limpar / Delete */
+#limpar {
+    background-color: #e0e0e0;
+    color: #555555;
+}
+
+#limpar:hover {
+    background-color: #d1d1d1;
+    color: #222222;
+}
+
+/* Área de resultados */
+.resultado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    width: 280px;
+}
+
+#tabuada {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2a2759;
+    margin-bottom: 12px;
+}
+
+/* Container onde as linhas são desenhadas */
+#conteudo-tabuada {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Cada linha da tabuada */
+#conteudo-tabuada p {
+    background-color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 16px;
+    color: #333333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #595bc0;
+    cursor: default;
+
+    transition:transform 0.91s ease, box-shadow 0.2s ease;
+}
+#conteudo-tabuada p:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15)
+}
+#efeitos{
+    position:fixed;
+    top:0;
+    left: 0;
+    pointer-events: none;
+}
