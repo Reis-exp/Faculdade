@@ -1,0 +1,44 @@
+-- Cria um novo banco de dados chamado "Empresa"
+create database Empresa;
+
+-- Seleciona o banco "empresa" para que os próximos comandos rodem dentro dele
+USE empresa;
+
+-- Cria a tabela "funcionarios" e define suas colunas e tipos de dados
+create table funcionarios (
+id int auto_increment primary key,
+nome varchar(100),
+departamento varchar(20),
+salario decimal(10,2),
+data_admissao date
+);
+
+-- Insere um único registro preenchendo todas as colunas na ordem da tabela
+insert into funcionarios values
+(1,'Ana', 'marketing', 2300.00, '2019-12-20');
+
+-- Insere múltiplos registros de uma vez; 'DEFAULT' aciona o AUTO_INCREMENT do id
+INSERT INTO funcionarios (id,nome, departamento, salario, data_admissao) VALUES
+(default,'Pedro', 'Juridico', 6500.00, '2015-03-11'),
+(default,'Jessica', 'Financeiro', 2500.00, '2017-08-16'),
+(default,'Paulo', 'Ti', 3500.00, '2020-04-01'),
+(default,'Maria', 'Financeiro', 2700.00, '2014-06-19'),
+(default,'Nicolas', 'Ti', 3500.00, '2024-05-20');
+
+
+select * from funcionarios;
+
+-- Converte os nomes para MAIÚSCULAS e cria apelidos (AS) para exibição das colunas
+select upper(nome) as "Nome do Funcionário", 
+departamento as "Área de Atuação" from funcionarios;
+
+-- Busca todas as colunas (*) apenas dos funcionários do departamento de 'Ti'
+select * from funcionarios where departamento = 'Ti';
+
+-- Soma os salários por departamento e ordena do maior total para o menor (DESC)
+select departamento, sum(salario) as Total_salarios from funcionarios
+group by departamento 
+order by Total_salarios desc;
+
+-- Filtra e exibe apenas os funcionários cujo nome começa com a letra 'A'
+select * from funcionarios where nome like 'A%';
